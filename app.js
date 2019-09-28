@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const mongoose = require('mongoose');
-mongoose.connect(`mongodb://localhost/aaa-rooms-with-reviews`);
+mongoose.connect(process.env.MONGODB_URI);
 
 const session = require("express-session");
 const bcrypt = require("bcrypt");
@@ -36,10 +36,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
